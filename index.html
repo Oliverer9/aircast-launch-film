@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AirCast Iceland launch film</title>
+<meta name="description" content="A 40-second launch film for AirCast Iceland, made with Claude Opus 5.5 and HyperFrames. Vefskólinn guide 4.4." />
+<style>
+  @font-face { font-family: Inter; font-weight: 100 900; font-display: swap; src: url(aircast-launch-film/assets/fonts/inter-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: Inter; font-weight: 100 900; font-display: swap; src: url(aircast-launch-film/assets/fonts/inter-latin-ext.woff2) format("woff2"); unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  :root {
+    --ground: #0d1620; --card: #152230; --line: #2b3b4c;
+    --ink: #e8eef4; --muted: #a8b7c6; --accent: #f0e641;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.6; }
+  a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .skip { position: absolute; left: 1rem; top: -4rem; padding: 0.75rem 1rem; background: var(--accent); color: #10202f; font-weight: 700; border-radius: 8px; z-index: 1; }
+  .skip:focus { top: 1rem; }
+  header, main, footer { max-width: 60rem; margin: 0 auto; padding: 0 1rem; }
+  header { padding-top: 2.5rem; }
+  .kicker { margin: 0; color: var(--muted); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  h1 { margin: 0.25rem 0 0.5rem; font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .lede { margin: 0 0 1.75rem; color: var(--muted); max-width: 42rem; }
+  video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 16px; border: 1px solid var(--line); }
+  .facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0.75rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9375rem; }
+  h2 { margin: 2.75rem 0 1rem; font-size: 1.5rem; font-weight: 800; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  .cards li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem 1.25rem; }
+  .cards a { display: inline-block; padding: 0.15rem 0; font-weight: 700; font-size: 1.0625rem; }
+  .cards p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.9375rem; }
+  .plain { padding-left: 1.25rem; }
+  .plain li { margin-bottom: 0.35rem; }
+  .plain a { display: inline-block; padding: 0.1rem 0; }
+  footer { margin-top: 3rem; padding-top: 1.25rem; padding-bottom: 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
+  footer p { margin: 0.25rem 0; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <p class="kicker">Vefskólinn · Guide 4.4 · Animations with LLMs</p>
+  <h1>AirCast Iceland launch film</h1>
+  <p class="lede">A 40-second film that launches <a href="https://aircast-iceland.onrender.com/">AirCast Iceland</a>, a live map of Iceland's air quality and wind. Made with Claude Opus 5.5 and HyperFrames: every scene is a web page on a timeline, rendered frame by frame to MP4.</p>
+</header>
+<main id="main">
+  <video controls preload="metadata" playsinline poster="aircast-launch-film/boards/stills/frame-00-at-2s.png" aria-label="AirCast Iceland launch film, 40 seconds">
+    <source src="aircast-launch-film/renders/aircast-launch-film-720p.mp4" type="video/mp4" />
+    <track kind="captions" src="aircast-launch-film/renders/aircast-launch-film.en.vtt" srclang="en" label="English" />
+    <p>Your browser can't play the video. <a href="aircast-launch-film/renders/aircast-launch-film-720p.mp4">Download the film (MP4, 3 MB)</a>.</p>
+  </video>
+  <ul class="facts">
+    <li>40 s · 720p</li>
+    <li>Voice: Kokoro "Heart", made on my own computer</li>
+    <li>Real site and real data, no made-up readings</li>
+    <li><a href="aircast-launch-film/renders/aircast-launch-film-1080p.mp4">1080p version (18 MB)</a></li>
+  </ul>
+
+  <h2>Hand-in</h2>
+  <ul class="cards">
+    <li>
+      <a href="aircast-launch-film/boards/storyboard.html">Storyboard</a>
+      <p>A still of every scene, with the six changes made because of the storyboard at the top.</p>
+    </li>
+    <li>
+      <a href="https://github.com/Oliverer9/aircast-launch-film/blob/main/STYLE-LIBRARY.md">Style library</a>
+      <p>The "living product" style: how to make another one, what broke and how it was fixed.</p>
+    </li>
+    <li>
+      <a href="https://github.com/Oliverer9/aircast-launch-film/blob/main/aircast-launch-film/PROMPTS.md">Prompts</a>
+      <p>Every prompt I used, the model, and whether I'd prompt it the same way next time.</p>
+    </li>
+  </ul>
+
+  <h2>How it was made</h2>
+  <ul class="plain">
+    <li><a href="https://github.com/Oliverer9/aircast-launch-film/blob/main/aircast-launch-film/PITCHES.md">Pitches</a>: four styles, and the one I picked</li>
+    <li><a href="https://github.com/Oliverer9/aircast-launch-film/blob/main/aircast-launch-film/SCRIPT.md">Script</a>: every title and voice line</li>
+    <li><a href="https://github.com/Oliverer9/aircast-launch-film/blob/main/aircast-launch-film/REVIEW.md">Review</a>: what was checked and fixed before rendering</li>
+    <li><a href="https://github.com/Oliverer9/aircast-launch-film">All the code on GitHub</a></li>
+  </ul>
+</main>
+<footer>
+  <p>Made by Oliver for Vefskólinn, November 2026.</p>
+  <p>Map tiles © OpenStreetMap contributors. Sound effects from Pixabay.</p>
+</footer>
+</body>
+</html>
