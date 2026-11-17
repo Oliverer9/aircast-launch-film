@@ -1,0 +1,88 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--header-a) 0%, var(--header-b) 100%);
+    }
+    #s7-stage {
+      position: absolute;
+      inset: 0;
+    }
+    #root .title {
+      left: 96px;
+      top: 170px;
+      font-size: 104px;
+    }
+    #s7-live {
+      color: var(--moderate);
+    }
+    /* The site's real header, with the live summary chips, at 1.5x, right under the title. */
+    #s7-header {
+      position: absolute;
+      left: 30px;
+      top: 400px;
+      width: 1860px;
+      height: 260px;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+    /* The chips (page y 102 to 140) are lifted off the header so they can land one by one:
+       the empty band just above them (page y 98 to 103.5) is stretched over their row. */
+    #s7-gap {
+      position: absolute;
+      left: 1110px;
+      top: 153px;
+      width: 738px;
+      height: 57px;
+      overflow: hidden;
+    }
+    .s7-chip {
+      position: absolute;
+      top: 153px;
+      height: 57px;
+      overflow: hidden;
+    }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <div id="s7-stage">
+      <h1 id="s7-title" class="title clip" data-start="0.6" data-duration="4.4">Iceland's air and wind, <span id="s7-live">live</span></h1>
+      <div id="s7-header">
+        <div id="s7-cam" class="cam"><img id="s7-plate" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+        <div id="s7-gap"><div id="s7-gap-cam" class="cam"><img id="s7-plate-gap" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+        <div id="s7-chip-0" class="s7-chip"><div class="cam"><img id="s7-plate-chip-0" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+        <div id="s7-chip-1" class="s7-chip"><div class="cam"><img id="s7-plate-chip-1" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+        <div id="s7-chip-2" class="s7-chip"><div class="cam"><img id="s7-plate-chip-2" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+        <div id="s7-chip-3" class="s7-chip"><div class="cam"><img id="s7-plate-chip-3" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // Header (page x 340 to 1580, y 0 to 173) at 1.5x; page (px, py) is at (1.5 (px - 340), 1.5 py) here.
+      const S = 1.5;
+      gsap.set('#s7-cam', { scale: S, x: -340 * S, y: 0 });
+      // The gap: page x 1080 to 1572, page y 98 to 103.5 (clear of the text above and the chips below) stretched to the row's 57 px.
+      gsap.set('#s7-gap-cam', { scaleX: S, scaleY: 57 / 5.5, x: -1080 * S, y: -98 * (57 / 5.5) });
+
+      // The four chips (20 Good, 1 Fair, 1 Moderate, 8 No index), measured on the plate.
+      const chips = [[1081.5, 1197.5], [1203.5, 1294], [1300, 1432.5], [1438.5, 1569]].map(([a, b], i) => {
+        const box = document.getElementById('s7-chip-' + i);
+        Object.assign(box.style, { left: (a - 340) * S + 'px', width: (b - a) * S + 'px' });
+        gsap.set(box.firstElementChild, { scale: S, x: -a * S, y: -102 * S });
+        return box;
+      });
+
+      const tl = gsap.timeline({ paused: true });
+      tl.from('#s7-header', { opacity: 0, filter: 'blur(8px)', duration: 0.2, ease: 'power2.out' }, 0.1);
+      Film.blurWords(tl, '#s7-title', 0.6);
+      gsap.set(chips, { opacity: 0, scale: 0.7 });
+      tl.to(chips, { opacity: 1, scale: 1, duration: 0.35, ease: 'expo.out', stagger: 0.15 }, 1.3);
+      // Out with a blur swap into the end card.
+      tl.to('#s7-stage', { opacity: 0, filter: 'blur(8px)', duration: 0.2, ease: 'power2.in' }, 4.8);
+      tl.to({}, { duration: 5 }, 0);
+      window.__timelines['s7'] = tl;
+    })();
+  </script>
+</template>

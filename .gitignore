@@ -1,0 +1,7 @@
+# Python venv for the Kokoro voice (made again with pip, ~100 MB)
+.venv-tts/
+# HyperFrames skills, installed again from skills-lock.json
+.agents/
+# HyperFrames' local state
+.hyperframes/
+node_modules/

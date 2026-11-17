@@ -1,0 +1,63 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--ground);
+    }
+    #root .title {
+      left: 96px;
+      top: 104px;
+    }
+    /* The real wind tile from the panel, brought forward at 1.8x. */
+    #s6-tile {
+      position: absolute;
+      left: 1060px;
+      top: 800px;
+      width: 771px;
+      height: 184px;
+      overflow: hidden;
+      border-radius: 22px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+    #s6-dip {
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
+    <div id="s6-cam" class="cam"><img id="s6-plate" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+    <canvas id="s6-wind" class="wind" width="1920" height="1080"></canvas>
+    <div id="s6-tile"><div id="s6-tile-cam" class="cam"><img id="s6-plate-tile" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+    <h1 id="s6-title" class="title clip" data-start="0.2" data-duration="5">And where the wind takes it</h1>
+    <div id="s6-dip"></div>
+  </div>
+  <script>
+    (function () {
+      // Pushed in on Reykjavík (page 647.2, 900 at the frame's centre), 3.52x to 3.6x. Both ends
+      // keep the map's own edge and its attribution out of frame.
+      const at = (s) => ({ scale: s, x: 960 - 647.2 * s, y: 540 - 900 * s });
+      const view = at(3.52);
+      // Wind tiles (page x 1107, y 1589, 428 x 102) at 1.8x.
+      gsap.set('#s6-tile-cam', { scale: 1.8, x: -1106.6 * 1.8, y: -1589.4 * 1.8 });
+      const canvas = document.getElementById('s6-wind');
+      const cam = document.getElementById('s6-cam');
+      const draw = (t) => {
+        gsap.set(cam, { scale: view.scale, x: view.x, y: view.y });
+        AirWind.draw(canvas, 24 + t, view, { density: 2600 });
+      };
+      const tl = gsap.timeline({ paused: true, onUpdate: () => draw(tl.time()) });
+      tl.to(view, { ...at(3.6), duration: 5.4, ease: 'power1.inOut' }, 0);
+      Film.blurWords(tl, '#s6-title', 0.2);
+      // The tile lands on "four metres a second" (with its pop).
+      tl.from('#s6-tile', { opacity: 0, scale: 0.9, filter: 'blur(8px)', duration: 0.5, ease: 'expo.out' }, 2.2);
+      // Dip to the claim.
+      tl.to('#s6-dip', { opacity: 0.4, duration: 0.1, ease: 'none' }, 5.3);
+      draw(0);
+      window.__timelines['s6'] = tl;
+    })();
+  </script>
+</template>

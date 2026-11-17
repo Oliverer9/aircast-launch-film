@@ -1,0 +1,101 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--light-ground);
+    }
+    #root .title {
+      left: 96px;
+      top: 96px;
+      color: var(--light-ink);
+    }
+    .s2-record {
+      position: absolute;
+      width: 920px;
+      padding: 32px 40px 36px;
+      background: #ffffff;
+      border: 2px solid #d5dde5;
+      border-radius: 20px;
+    }
+    .s2-source {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--light-muted);
+      margin-bottom: 18px;
+    }
+    .s2-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 32px;
+      line-height: 1.5;
+      color: var(--light-ink);
+      white-space: pre;
+    }
+    .s2-id {
+      background: #ffe9a8;
+      border-radius: 6px;
+      padding: 0 6px;
+    }
+    #s2-stage {
+      position: absolute;
+      inset: 0;
+    }
+    .s2-code .ln {
+      display: block;
+    }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <div id="s2-stage">
+      <h1 id="s2-title-a" class="title clip" data-start="0.15" data-duration="2.55">Air quality is measured here</h1>
+      <h1 id="s2-title-b" class="title clip" data-start="2.8" data-duration="1.7">Wind is measured there</h1>
+    <!-- Real records from the two APIs, as they arrive (from the 30.10.2026 snapshot). -->
+    <div id="s2-air" class="s2-record" style="left: 96px; top: 290px">
+      <div class="s2-source">Loftgæði · api.ust.is</div>
+      <div class="s2-code"><span class="s2-id">"STA-IS0005A"</span>: {
+  "name": "Reykjavik Grensas",
+  "NO2": { "0": { "value": "25.067" } }
+}</div>
+    </div>
+    <div id="s2-wind" class="s2-record" style="left: 904px; top: 620px">
+      <div class="s2-source">Veðurstofa Íslands · api.vedur.is</div>
+      <div class="s2-code">{ "station": <span class="s2-id">1475</span>,
+  "name": "Reykjavík - Bústaðavegur",
+  "f": 3.99, "d_txt": "SSE" }</div>
+    </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Arrives from the whip: lands blurred and sharpens.
+      tl.from('#s2-stage', { x: 320, filter: 'blur(18px)', duration: 0.3, ease: 'power3.out' }, 0);
+
+      // Each record: the card lands, then its lines type in, one after the other.
+      const typeIn = (sel, at) => {
+        gsap.set(sel, { opacity: 0, scale: 0.96 });
+        tl.to(sel, { opacity: 1, scale: 1, duration: 0.3, ease: 'expo.out' }, at);
+        const code = document.querySelector(sel + ' .s2-code');
+        code.innerHTML = code.innerHTML.split('\n').map((l) => '<span class="ln">' + l + '</span>').join('');
+        let t = at + 0.15;
+        for (const ln of code.querySelectorAll('.ln')) {
+          const n = Math.max(ln.textContent.length, 1), d = n * 0.012;
+          gsap.set(ln, { clipPath: 'inset(0 100% 0 0)' });
+          tl.to(ln, { clipPath: 'inset(0 0% 0 0)', duration: d, ease: 'steps(' + n + ')' }, t);
+          t += d + 0.04;
+        }
+      };
+      Film.inkWords(tl, '#s2-title-a', 0.15, '#c3ccd6');
+      typeIn('#s2-air', 0.15);
+      Film.blurOut(tl, '#s2-title-a', 2.52);
+      Film.inkWords(tl, '#s2-title-b', 2.8, '#c3ccd6');
+      typeIn('#s2-wind', 2.8);
+
+      // Hand-off: both records shrink and blur away, as if carried onto the map.
+      Film.blurOut(tl, '#s2-title-b', 4.25);
+      tl.to(['#s2-air', '#s2-wind'], { scale: 0.6, opacity: 0, filter: 'blur(6px)', duration: 0.35, ease: 'power3.in', stagger: 0.04 }, 4.2);
+      tl.to({}, { duration: 4.6 }, 0);
+      window.__timelines['s2'] = tl;
+    })();
+  </script>
+</template>

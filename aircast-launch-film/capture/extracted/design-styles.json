@@ -1,0 +1,264 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Inter Variable",
+      "fontSize": "36px",
+      "fontWeight": "800",
+      "lineHeight": "43.2px",
+      "letterSpacing": "-0.36px",
+      "color": "#FFFFFF",
+      "sampleText": "AirCast Iceland"
+    },
+    {
+      "role": "label",
+      "fontFamily": "Inter Variable",
+      "fontSize": "28px",
+      "fontWeight": "800",
+      "lineHeight": "33.6px",
+      "letterSpacing": "normal",
+      "color": "#10202F",
+      "sampleText": "Moderate"
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Inter Variable",
+      "fontSize": "22px",
+      "fontWeight": "700",
+      "lineHeight": "26.4px",
+      "letterSpacing": "-0.22px",
+      "color": "#E8EEF4",
+      "sampleText": "Forecast"
+    },
+    {
+      "role": "body",
+      "fontFamily": "Inter Variable",
+      "fontSize": "18px",
+      "fontWeight": "400",
+      "lineHeight": "27px",
+      "letterSpacing": "normal",
+      "color": "#C7D6E4",
+      "sampleText": "Air quality and weather in Iceland, live."
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Inter Variable",
+      "fontSize": "17px",
+      "fontWeight": "700",
+      "lineHeight": "20.4px",
+      "letterSpacing": "-0.17px",
+      "color": "#E8EEF4",
+      "sampleText": "What it means"
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Inter Variable",
+      "fontSize": "16px",
+      "fontWeight": "700",
+      "lineHeight": "19.2px",
+      "letterSpacing": "-0.16px",
+      "color": "#E8EEF4",
+      "sampleText": "Levels (European Air Quality Index)"
+    },
+    {
+      "role": "link",
+      "fontFamily": "Inter Variable",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "16.8px",
+      "letterSpacing": "normal",
+      "color": "#0078A8",
+      "sampleText": "Leaflet"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      24
+    ],
+    "baseUnit": 4
+  },
+  "radius": [
+    "14px",
+    "999px"
+  ],
+  "shadows": [
+    {
+      "value": "rgba(0, 0, 0, 0.4) 0px 1px 2px 0px, rgba(0, 0, 0, 0.3) 0px 6px 20px 0px",
+      "count": 4
+    }
+  ],
+  "buttons": [
+    {
+      "label": "English",
+      "background": "#FFFFFF",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#0B2239",
+      "padding": "0px 14px",
+      "borderRadius": "0px",
+      "border": "0px none rgb(11, 34, 57)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "height": "36px"
+    },
+    {
+      "label": "Íslenska",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#FFFFFF",
+      "padding": "0px 14px",
+      "borderRadius": "0px",
+      "border": "0px none rgb(255, 255, 255)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "height": "36px"
+    },
+    {
+      "label": "Dark mode",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#FFFFFF",
+      "padding": "0px 14px",
+      "borderRadius": "999px",
+      "border": "1px solid rgba(255, 255, 255, 0.55)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "height": "38px"
+    },
+    {
+      "label": "Wind animation",
+      "background": "#7CBCFF",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#152230",
+      "padding": "0px 16px 0px 12px",
+      "borderRadius": "999px",
+      "border": "2px solid rgb(124, 188, 255)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "600",
+      "height": "44px"
+    },
+    {
+      "label": "+",
+      "background": "#152230",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#E8EEF4",
+      "padding": "0px",
+      "borderRadius": "2px 2px 0px 0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "22px",
+      "fontWeight": "700",
+      "height": "30px"
+    },
+    {
+      "label": "−",
+      "background": "#152230",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#E8EEF4",
+      "padding": "0px",
+      "borderRadius": "0px 0px 2px 2px",
+      "border": "0px none rgb(43, 59, 76)",
+      "boxShadow": "none",
+      "fontSize": "22px",
+      "fontWeight": "700",
+      "height": "30px"
+    }
+  ],
+  "cards": [
+    {
+      "label": "card",
+      "background": "#152230",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#E8EEF4",
+      "padding": "20px 24px",
+      "borderRadius": "14px",
+      "border": "1px solid rgb(43, 59, 76)",
+      "boxShadow": "rgba(0, 0, 0, 0.4) 0px 1px 2px 0px, rgba(0, 0, 0, 0.3) 0px 6px 20px 0px",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "176.391px"
+    },
+    {
+      "label": "card",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#E8EEF4",
+      "padding": "0px",
+      "borderRadius": "0px",
+      "border": "0px none rgb(232, 238, 244)",
+      "boxShadow": "none",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "height": "256px"
+    }
+  ],
+  "nav": {
+    "label": "navigation",
+    "background": "transparent",
+    "backgroundImage": "linear-gradient(135deg, rgb(6, 15, 25) 0%, rgb(13, 42, 69) 100%)",
+    "backdropFilter": "",
+    "color": "#FFFFFF",
+    "padding": "0px",
+    "borderRadius": "0px",
+    "border": "0px none rgb(255, 255, 255)",
+    "boxShadow": "none",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "173.5px"
+  },
+  "chips": [
+    {
+      "label": "PM10",
+      "background": "#7CBCFF",
+      "color": "#152230",
+      "padding": "0px 12px",
+      "borderRadius": "999px",
+      "border": "1px solid rgb(124, 188, 255)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "height": "32px"
+    },
+    {
+      "label": "PM2.5",
+      "background": "#152230",
+      "color": "#E8EEF4",
+      "padding": "0px 12px",
+      "borderRadius": "999px",
+      "border": "1px solid rgb(133, 150, 168)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "height": "32px"
+    }
+  ],
+  "statCells": [],
+  "tabs": [],
+  "backgrounds": [
+    {
+      "value": "linear-gradient(135deg, rgb(6, 15, 25) 0%, rgb(13, 42, 69) 100%)",
+      "area": 333120
+    }
+  ],
+  "glass": []
+}

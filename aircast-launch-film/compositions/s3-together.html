@@ -1,0 +1,211 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #1b2633;
+    }
+    /* The camera on the map; it carries the arrival's blur, so the map keeps its own filter. */
+    #s3-world {
+      position: absolute;
+      inset: 0;
+    }
+    /* The site's dark map: OpenStreetMap tiles inverted and turned back to their own hues. */
+    #s3-map {
+      position: absolute;
+      inset: 0;
+      filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+    }
+    .s3-tile {
+      position: absolute;
+      width: 256px;
+      height: 256px;
+    }
+    #root .title {
+      left: 96px;
+      top: 96px;
+    }
+    .s3-pin {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      margin: -28px 0 0 -28px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      box-shadow: 0 0 0 4px #ffffff;
+    }
+    #s3-pin-air {
+      background: var(--moderate);
+      border: 6px solid #1a1a1a;
+    }
+    #s3-pin-wind {
+      background: #ffffff;
+      border: 6px solid #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .s3-label {
+      position: absolute;
+      padding: 14px 24px;
+      background: #152230;
+      border: 2px solid #2b3b4c;
+      border-radius: 16px;
+      color: var(--ink);
+      font-size: 34px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .s3-label small {
+      display: block;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    #s3-km {
+      position: absolute;
+      transform: translate(-50%, -100%);
+      padding: 8px 18px;
+      background: #ffffff;
+      border-radius: 999px;
+      color: var(--light-ink);
+      font-size: 34px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    /* The dip before the cut: the frame darkens 40% for 3 frames, so the cut reads as meant. */
+    #s3-dip {
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      opacity: 0;
+    }
+    #s3-credit {
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      padding: 4px 10px;
+      background: rgba(13, 22, 32, 0.8);
+      color: #c7d6e4;
+      font-size: 18px;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div id="s3-world">
+      <div id="s3-map">
+      <img id="s3-t-14386-8709" class="s3-tile" src="assets/tiles/15/14386/8709.png" alt="" style="left: -473px; top: -219px" />
+      <img id="s3-t-14386-8710" class="s3-tile" src="assets/tiles/15/14386/8710.png" alt="" style="left: -473px; top: 37px" />
+      <img id="s3-t-14386-8711" class="s3-tile" src="assets/tiles/15/14386/8711.png" alt="" style="left: -473px; top: 293px" />
+      <img id="s3-t-14386-8712" class="s3-tile" src="assets/tiles/15/14386/8712.png" alt="" style="left: -473px; top: 549px" />
+      <img id="s3-t-14386-8713" class="s3-tile" src="assets/tiles/15/14386/8713.png" alt="" style="left: -473px; top: 805px" />
+      <img id="s3-t-14386-8714" class="s3-tile" src="assets/tiles/15/14386/8714.png" alt="" style="left: -473px; top: 1061px" />
+      <img id="s3-t-14386-8715" class="s3-tile" src="assets/tiles/15/14386/8715.png" alt="" style="left: -473px; top: 1317px" />
+      <img id="s3-t-14387-8709" class="s3-tile" src="assets/tiles/15/14387/8709.png" alt="" style="left: -217px; top: -219px" />
+      <img id="s3-t-14387-8710" class="s3-tile" src="assets/tiles/15/14387/8710.png" alt="" style="left: -217px; top: 37px" />
+      <img id="s3-t-14387-8711" class="s3-tile" src="assets/tiles/15/14387/8711.png" alt="" style="left: -217px; top: 293px" />
+      <img id="s3-t-14387-8712" class="s3-tile" src="assets/tiles/15/14387/8712.png" alt="" style="left: -217px; top: 549px" />
+      <img id="s3-t-14387-8713" class="s3-tile" src="assets/tiles/15/14387/8713.png" alt="" style="left: -217px; top: 805px" />
+      <img id="s3-t-14387-8714" class="s3-tile" src="assets/tiles/15/14387/8714.png" alt="" style="left: -217px; top: 1061px" />
+      <img id="s3-t-14387-8715" class="s3-tile" src="assets/tiles/15/14387/8715.png" alt="" style="left: -217px; top: 1317px" />
+      <img id="s3-t-14388-8709" class="s3-tile" src="assets/tiles/15/14388/8709.png" alt="" style="left: 39px; top: -219px" />
+      <img id="s3-t-14388-8710" class="s3-tile" src="assets/tiles/15/14388/8710.png" alt="" style="left: 39px; top: 37px" />
+      <img id="s3-t-14388-8711" class="s3-tile" src="assets/tiles/15/14388/8711.png" alt="" style="left: 39px; top: 293px" />
+      <img id="s3-t-14388-8712" class="s3-tile" src="assets/tiles/15/14388/8712.png" alt="" style="left: 39px; top: 549px" />
+      <img id="s3-t-14388-8713" class="s3-tile" src="assets/tiles/15/14388/8713.png" alt="" style="left: 39px; top: 805px" />
+      <img id="s3-t-14388-8714" class="s3-tile" src="assets/tiles/15/14388/8714.png" alt="" style="left: 39px; top: 1061px" />
+      <img id="s3-t-14388-8715" class="s3-tile" src="assets/tiles/15/14388/8715.png" alt="" style="left: 39px; top: 1317px" />
+      <img id="s3-t-14389-8709" class="s3-tile" src="assets/tiles/15/14389/8709.png" alt="" style="left: 295px; top: -219px" />
+      <img id="s3-t-14389-8710" class="s3-tile" src="assets/tiles/15/14389/8710.png" alt="" style="left: 295px; top: 37px" />
+      <img id="s3-t-14389-8711" class="s3-tile" src="assets/tiles/15/14389/8711.png" alt="" style="left: 295px; top: 293px" />
+      <img id="s3-t-14389-8712" class="s3-tile" src="assets/tiles/15/14389/8712.png" alt="" style="left: 295px; top: 549px" />
+      <img id="s3-t-14389-8713" class="s3-tile" src="assets/tiles/15/14389/8713.png" alt="" style="left: 295px; top: 805px" />
+      <img id="s3-t-14389-8714" class="s3-tile" src="assets/tiles/15/14389/8714.png" alt="" style="left: 295px; top: 1061px" />
+      <img id="s3-t-14389-8715" class="s3-tile" src="assets/tiles/15/14389/8715.png" alt="" style="left: 295px; top: 1317px" />
+      <img id="s3-t-14390-8709" class="s3-tile" src="assets/tiles/15/14390/8709.png" alt="" style="left: 551px; top: -219px" />
+      <img id="s3-t-14390-8710" class="s3-tile" src="assets/tiles/15/14390/8710.png" alt="" style="left: 551px; top: 37px" />
+      <img id="s3-t-14390-8711" class="s3-tile" src="assets/tiles/15/14390/8711.png" alt="" style="left: 551px; top: 293px" />
+      <img id="s3-t-14390-8712" class="s3-tile" src="assets/tiles/15/14390/8712.png" alt="" style="left: 551px; top: 549px" />
+      <img id="s3-t-14390-8713" class="s3-tile" src="assets/tiles/15/14390/8713.png" alt="" style="left: 551px; top: 805px" />
+      <img id="s3-t-14390-8714" class="s3-tile" src="assets/tiles/15/14390/8714.png" alt="" style="left: 551px; top: 1061px" />
+      <img id="s3-t-14390-8715" class="s3-tile" src="assets/tiles/15/14390/8715.png" alt="" style="left: 551px; top: 1317px" />
+      <img id="s3-t-14391-8709" class="s3-tile" src="assets/tiles/15/14391/8709.png" alt="" style="left: 807px; top: -219px" />
+      <img id="s3-t-14391-8710" class="s3-tile" src="assets/tiles/15/14391/8710.png" alt="" style="left: 807px; top: 37px" />
+      <img id="s3-t-14391-8711" class="s3-tile" src="assets/tiles/15/14391/8711.png" alt="" style="left: 807px; top: 293px" />
+      <img id="s3-t-14391-8712" class="s3-tile" src="assets/tiles/15/14391/8712.png" alt="" style="left: 807px; top: 549px" />
+      <img id="s3-t-14391-8713" class="s3-tile" src="assets/tiles/15/14391/8713.png" alt="" style="left: 807px; top: 805px" />
+      <img id="s3-t-14391-8714" class="s3-tile" src="assets/tiles/15/14391/8714.png" alt="" style="left: 807px; top: 1061px" />
+      <img id="s3-t-14391-8715" class="s3-tile" src="assets/tiles/15/14391/8715.png" alt="" style="left: 807px; top: 1317px" />
+      <img id="s3-t-14392-8709" class="s3-tile" src="assets/tiles/15/14392/8709.png" alt="" style="left: 1063px; top: -219px" />
+      <img id="s3-t-14392-8710" class="s3-tile" src="assets/tiles/15/14392/8710.png" alt="" style="left: 1063px; top: 37px" />
+      <img id="s3-t-14392-8711" class="s3-tile" src="assets/tiles/15/14392/8711.png" alt="" style="left: 1063px; top: 293px" />
+      <img id="s3-t-14392-8712" class="s3-tile" src="assets/tiles/15/14392/8712.png" alt="" style="left: 1063px; top: 549px" />
+      <img id="s3-t-14392-8713" class="s3-tile" src="assets/tiles/15/14392/8713.png" alt="" style="left: 1063px; top: 805px" />
+      <img id="s3-t-14392-8714" class="s3-tile" src="assets/tiles/15/14392/8714.png" alt="" style="left: 1063px; top: 1061px" />
+      <img id="s3-t-14392-8715" class="s3-tile" src="assets/tiles/15/14392/8715.png" alt="" style="left: 1063px; top: 1317px" />
+      <img id="s3-t-14393-8709" class="s3-tile" src="assets/tiles/15/14393/8709.png" alt="" style="left: 1319px; top: -219px" />
+      <img id="s3-t-14393-8710" class="s3-tile" src="assets/tiles/15/14393/8710.png" alt="" style="left: 1319px; top: 37px" />
+      <img id="s3-t-14393-8711" class="s3-tile" src="assets/tiles/15/14393/8711.png" alt="" style="left: 1319px; top: 293px" />
+      <img id="s3-t-14393-8712" class="s3-tile" src="assets/tiles/15/14393/8712.png" alt="" style="left: 1319px; top: 549px" />
+      <img id="s3-t-14393-8713" class="s3-tile" src="assets/tiles/15/14393/8713.png" alt="" style="left: 1319px; top: 805px" />
+      <img id="s3-t-14393-8714" class="s3-tile" src="assets/tiles/15/14393/8714.png" alt="" style="left: 1319px; top: 1061px" />
+      <img id="s3-t-14393-8715" class="s3-tile" src="assets/tiles/15/14393/8715.png" alt="" style="left: 1319px; top: 1317px" />
+      <img id="s3-t-14394-8709" class="s3-tile" src="assets/tiles/15/14394/8709.png" alt="" style="left: 1575px; top: -219px" />
+      <img id="s3-t-14394-8710" class="s3-tile" src="assets/tiles/15/14394/8710.png" alt="" style="left: 1575px; top: 37px" />
+      <img id="s3-t-14394-8711" class="s3-tile" src="assets/tiles/15/14394/8711.png" alt="" style="left: 1575px; top: 293px" />
+      <img id="s3-t-14394-8712" class="s3-tile" src="assets/tiles/15/14394/8712.png" alt="" style="left: 1575px; top: 549px" />
+      <img id="s3-t-14394-8713" class="s3-tile" src="assets/tiles/15/14394/8713.png" alt="" style="left: 1575px; top: 805px" />
+      <img id="s3-t-14394-8714" class="s3-tile" src="assets/tiles/15/14394/8714.png" alt="" style="left: 1575px; top: 1061px" />
+      <img id="s3-t-14394-8715" class="s3-tile" src="assets/tiles/15/14394/8715.png" alt="" style="left: 1575px; top: 1317px" />
+      <img id="s3-t-14395-8709" class="s3-tile" src="assets/tiles/15/14395/8709.png" alt="" style="left: 1831px; top: -219px" />
+      <img id="s3-t-14395-8710" class="s3-tile" src="assets/tiles/15/14395/8710.png" alt="" style="left: 1831px; top: 37px" />
+      <img id="s3-t-14395-8711" class="s3-tile" src="assets/tiles/15/14395/8711.png" alt="" style="left: 1831px; top: 293px" />
+      <img id="s3-t-14395-8712" class="s3-tile" src="assets/tiles/15/14395/8712.png" alt="" style="left: 1831px; top: 549px" />
+      <img id="s3-t-14395-8713" class="s3-tile" src="assets/tiles/15/14395/8713.png" alt="" style="left: 1831px; top: 805px" />
+      <img id="s3-t-14395-8714" class="s3-tile" src="assets/tiles/15/14395/8714.png" alt="" style="left: 1831px; top: 1061px" />
+      <img id="s3-t-14395-8715" class="s3-tile" src="assets/tiles/15/14395/8715.png" alt="" style="left: 1831px; top: 1317px" />
+      <img id="s3-t-14396-8709" class="s3-tile" src="assets/tiles/15/14396/8709.png" alt="" style="left: 2087px; top: -219px" />
+      <img id="s3-t-14396-8710" class="s3-tile" src="assets/tiles/15/14396/8710.png" alt="" style="left: 2087px; top: 37px" />
+      <img id="s3-t-14396-8711" class="s3-tile" src="assets/tiles/15/14396/8711.png" alt="" style="left: 2087px; top: 293px" />
+      <img id="s3-t-14396-8712" class="s3-tile" src="assets/tiles/15/14396/8712.png" alt="" style="left: 2087px; top: 549px" />
+      <img id="s3-t-14396-8713" class="s3-tile" src="assets/tiles/15/14396/8713.png" alt="" style="left: 2087px; top: 805px" />
+      <img id="s3-t-14396-8714" class="s3-tile" src="assets/tiles/15/14396/8714.png" alt="" style="left: 2087px; top: 1061px" />
+      <img id="s3-t-14396-8715" class="s3-tile" src="assets/tiles/15/14396/8715.png" alt="" style="left: 2087px; top: 1317px" />
+      </div>
+    </div>
+    <svg id="s3-line" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+      <line id="s3-join" x1="1299" y1="532" x2="661" y2="668" stroke="#ffffff" stroke-width="5" stroke-dasharray="16 12" stroke-linecap="round" />
+    </svg>
+    <div id="s3-pin-air" class="s3-pin" style="left: 1299px; top: 532px"></div>
+    <div id="s3-pin-wind" class="s3-pin" style="left: 661px; top: 668px">
+      <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(330deg)">
+        <path d="M12 3v16M6 9l6-6 6 6" fill="none" stroke="#0b5cad" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div id="s3-label-air" class="s3-label" style="left: 1351px; top: 484px">Reykjavik Grensas<small>air quality · Loftgæði</small></div>
+    <div id="s3-label-wind" class="s3-label" style="right: 1311px; top: 620px">Reykjavík - Bústaðavegur<small>wind · Veðurstofa</small></div>
+    <div id="s3-km" style="left: 980px; top: 576px">1.4 km apart</div>
+    <div id="s3-credit" data-layout-ignore>© OpenStreetMap contributors</div>
+    <h1 id="s3-title" class="title clip" data-start="0.3" data-duration="2.7">AirCast Iceland puts them together</h1>
+    <div id="s3-dip"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // The map arrives a little large and settles (its whoosh peaks on the cut).
+      tl.from('#s3-world', { scale: 1.08, filter: 'blur(10px)', duration: 0.6, ease: 'power3.out', transformOrigin: '980px 600px' }, 0);
+      Film.blurLine(tl, '#s3-title', 0.3);
+      // The two stations land, the air one first, each with its label.
+      tl.from('#s3-pin-air', { scale: 0, duration: 0.4, ease: 'expo.out' }, 0.4);
+      tl.from('#s3-label-air', { opacity: 0, filter: 'blur(6px)', duration: 0.2, ease: 'power2.out' }, 0.5);
+      tl.from('#s3-pin-wind', { scale: 0, duration: 0.4, ease: 'expo.out' }, 0.6);
+      tl.from('#s3-label-wind', { opacity: 0, filter: 'blur(6px)', duration: 0.2, ease: 'power2.out' }, 0.7);
+      // Then the line joins them, drawn from the air station to the wind station, and the distance lands.
+      tl.from('#s3-join', { attr: { x2: 1299, y2: 532 }, duration: 0.6, ease: 'power2.inOut' }, 0.95);
+      tl.from('#s3-km', { opacity: 0, scale: 0.8, duration: 0.35, ease: 'expo.out' }, 1.5);
+      tl.to('#s3-dip', { opacity: 0.4, duration: 0.1, ease: 'none' }, 2.9);
+      tl.to({}, { duration: 3 }, 0);
+      window.__timelines['s3'] = tl;
+    })();
+  </script>
+</template>

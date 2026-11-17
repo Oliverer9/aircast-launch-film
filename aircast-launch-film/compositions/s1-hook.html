@@ -1,0 +1,72 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--ground);
+    }
+    #s1-stage {
+      position: absolute;
+      inset: 0;
+    }
+    /* Grensás's yellow dot pulses once: the one place that is not Good. Placed on the dot each
+       frame, since the camera moves. */
+    #s1-pulse {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      border: 6px solid var(--moderate);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    #s1-title {
+      left: 96px;
+      top: 104px;
+    }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div id="s1-stage">
+      <!-- The real AirCast map (captured from the live site at 2x), filling the frame. -->
+      <div id="s1-cam" class="cam"><img id="s1-plate" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+      <canvas id="s1-wind" class="wind" width="1920" height="1080"></canvas>
+      <div id="s1-pulse"></div>
+      <h1 id="s1-title" class="title clip" data-start="0.3" data-duration="3.7">Is the air OK right now?</h1>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // The map area on the page (1x): x 369, y 559, 668 x 514. Fill the width from x 378 (past the
+      // card border) and crop the top, so the zoom buttons and attribution stay out of frame.
+      // One slow push, 2.954x to 3.1x, around the frame's centre (page 703, 822.8): only further in,
+      // so the card's edges never show.
+      const cx = 703, cy = 822.8;
+      const at = (s) => ({ scale: s, x: 960 - cx * s, y: 540 - cy * s });
+      const view = at(2.954);
+      const grensas = { x: 562, y: 942.9 };
+
+      const canvas = document.getElementById('s1-wind');
+      const cam = document.getElementById('s1-cam');
+      const pulse = document.getElementById('s1-pulse');
+      const place = () => {
+        gsap.set(cam, { x: view.x, y: view.y, scale: view.scale });
+        gsap.set(pulse, { x: grensas.x * view.scale + view.x, y: grensas.y * view.scale + view.y });
+      };
+      const tl = gsap.timeline({ paused: true, onUpdate: () => { place(); AirWind.draw(canvas, tl.time(), view); } });
+
+      tl.to(view, { ...at(3.1), duration: 4, ease: 'power1.inOut' }, 0);
+      Film.blurWords(tl, '#s1-title', 0.3);
+      // The pulse: once, as the title finishes landing.
+      tl.fromTo(pulse, { opacity: 1, scale: 0.4 }, { opacity: 0, scale: 1.8, duration: 1, ease: 'power2.out' }, 1.0);
+      // Hand-off: a whip to the left into the light world (its whoosh peaks on the cut).
+      tl.to('#s1-stage', { x: -320, filter: 'blur(18px)', duration: 0.25, ease: 'power3.in' }, 3.75);
+
+      place();
+      AirWind.draw(canvas, 0, view);
+      window.__timelines['s1'] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,287 @@
+{
+  "page": {
+    "w": 1904,
+    "h": 1834
+  },
+  "theme": "dark",
+  "header": {
+    "x": 0,
+    "y": 0,
+    "w": 1904,
+    "h": 173.5
+  },
+  "summary": {
+    "x": 1074.28125,
+    "y": 78,
+    "w": 485.71875,
+    "h": 59.5
+  },
+  "forecast": {
+    "x": 344,
+    "y": 205.5,
+    "w": 1215.984375,
+    "h": 218.390625
+  },
+  "mapCard": {
+    "x": 344,
+    "y": 443.890625,
+    "w": 717.59375,
+    "h": 758.4375
+  },
+  "map": {
+    "x": 369,
+    "y": 558.890625,
+    "w": 667.59375,
+    "h": 514
+  },
+  "legend": {
+    "x": 369,
+    "y": 1088.890625,
+    "w": 667.59375,
+    "h": 88.4375
+  },
+  "picker": {
+    "x": 344,
+    "y": 1222.328125,
+    "w": 717.59375,
+    "h": 122
+  },
+  "details": {
+    "x": 1081.59375,
+    "y": 443.890625,
+    "w": 478.390625,
+    "h": 1268.546875
+  },
+  "badge": {
+    "x": 1106.59375,
+    "y": 528.28125,
+    "w": 428.390625,
+    "h": 80.59375
+  },
+  "advice": {
+    "x": 1106.59375,
+    "y": 657.265625,
+    "w": 428.390625,
+    "h": 152
+  },
+  "bars": [
+    {
+      "text": "Dust (PM10) 12.1 µg/m3 · Good",
+      "rect": {
+        "x": 1106.59375,
+        "y": 886.65625,
+        "w": 428.390625,
+        "h": 44
+      }
+    },
+    {
+      "text": "Fine dust (PM2.5) 4.2 µg/m3 · Good",
+      "rect": {
+        "x": 1106.59375,
+        "y": 944.65625,
+        "w": 428.390625,
+        "h": 44
+      }
+    },
+    {
+      "text": "Nitrogen dioxide (NO₂) 25.1 µg/m3 · Moderate",
+      "rect": {
+        "x": 1106.59375,
+        "y": 1002.65625,
+        "w": 428.390625,
+        "h": 44
+      }
+    },
+    {
+      "text": "Sulphur dioxide (SO₂) 4.6 µg/m3 · Good",
+      "rect": {
+        "x": 1106.59375,
+        "y": 1060.65625,
+        "w": 428.390625,
+        "h": 44
+      }
+    },
+    {
+      "text": "Hydrogen sulphide (H₂S) 1.3 µg/m3 · No index The European index has no levels for this one.",
+      "rect": {
+        "x": 1106.59375,
+        "y": 1118.65625,
+        "w": 428.390625,
+        "h": 49
+      }
+    },
+    {
+      "text": "Carbon monoxide (CO) 0.1 mg/m3 · No index The European index has no levels for this one.",
+      "rect": {
+        "x": 1106.59375,
+        "y": 1181.65625,
+        "w": 428.390625,
+        "h": 49
+      }
+    }
+  ],
+  "chart": {
+    "x": 1106.59375,
+    "y": 1279.046875,
+    "w": 428.390625,
+    "h": 233
+  },
+  "tiles": {
+    "x": 1106.59375,
+    "y": 1589.4375,
+    "w": 428.390625,
+    "h": 102
+  },
+  "markers": [
+    {
+      "title": "Akureyri Strandgata (við Hof): Good",
+      "cx": 806,
+      "cy": 706.890625
+    },
+    {
+      "title": "Ásbrú: Good",
+      "cx": 516,
+      "cy": 966.890625
+    },
+    {
+      "title": "Garðabær Garðaholt: Good",
+      "cx": 555,
+      "cy": 948.890625
+    },
+    {
+      "title": "Garður: Good",
+      "cx": 512,
+      "cy": 951.890625
+    },
+    {
+      "title": "Grindavík Nesvegur: Good",
+      "cx": 526,
+      "cy": 983.890625
+    },
+    {
+      "title": "Grundartangi Gröf: Good",
+      "cx": 565,
+      "cy": 912.890625
+    },
+    {
+      "title": "Grundartangi Kríuvarða: Good",
+      "cx": 570,
+      "cy": 906.890625
+    },
+    {
+      "title": "Grundartangi Melahverfi: Fair",
+      "cx": 565,
+      "cy": 905.890625
+    },
+    {
+      "title": "Hafnarfjörður Hvaleyrarholt: Good",
+      "cx": 555,
+      "cy": 953.890625
+    },
+    {
+      "title": "Hafnarfjörður Lónakot Rio Tinto: Good",
+      "cx": 549,
+      "cy": 956.890625
+    },
+    {
+      "title": "Hafnir: Good",
+      "cx": 510,
+      "cy": 971.890625
+    },
+    {
+      "title": "Hveragerði Leikskólinn Óskaland: No index",
+      "cx": 606,
+      "cy": 961.890625
+    },
+    {
+      "title": "Keflavík Vatnaveröld: Good",
+      "cx": 518,
+      "cy": 962.890625
+    },
+    {
+      "title": "Kelduhverfi Eyvindarstadir: No index",
+      "cx": 897,
+      "cy": 648.890625
+    },
+    {
+      "title": "Kópavogur Dalsmári: Good",
+      "cx": 561,
+      "cy": 946.890625
+    },
+    {
+      "title": "Kópavogur Hörðuvallaskóli: Good",
+      "cx": 566,
+      "cy": 949.890625
+    },
+    {
+      "title": "Kópavogur Lækjarbotnar Waldorfskóli : No index",
+      "cx": 576,
+      "cy": 951.890625
+    },
+    {
+      "title": "Mývatn Reykjahlíð Grunnskóli: No index",
+      "cx": 883,
+      "cy": 713.890625
+    },
+    {
+      "title": "Mývatn Vogar: No index",
+      "cx": 881,
+      "cy": 716.890625
+    },
+    {
+      "title": "Nesjavellir: No index",
+      "cx": 603,
+      "cy": 944.890625
+    },
+    {
+      "title": "Njarðvík Stapaskóli: Good",
+      "cx": 522,
+      "cy": 965.890625
+    },
+    {
+      "title": "Portable Farstöð 1: Good",
+      "cx": 558,
+      "cy": 941.890625
+    },
+    {
+      "title": "Reykjavik Grensas: Moderate",
+      "cx": 562,
+      "cy": 942.890625
+    },
+    {
+      "title": "Reykjavik Husdyragardurinn: Good",
+      "cx": 562,
+      "cy": 941.890625
+    },
+    {
+      "title": "Reykjavík Laugarnes: Good",
+      "cx": 562,
+      "cy": 939.890625
+    },
+    {
+      "title": "Reykjavík Norðlingaholt: No index",
+      "cx": 569,
+      "cy": 946.890625
+    },
+    {
+      "title": "Sandgerði: Good",
+      "cx": 509,
+      "cy": 956.890625
+    },
+    {
+      "title": "Selfoss: Good",
+      "cx": 617,
+      "cy": 972.890625
+    },
+    {
+      "title": "Úlfarsárdalur Lambhaga OR: No index",
+      "cx": 570,
+      "cy": 942.890625
+    },
+    {
+      "title": "Vogar: Good",
+      "cx": 530,
+      "cy": 964.890625
+    }
+  ]
+}

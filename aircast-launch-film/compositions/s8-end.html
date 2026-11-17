@@ -1,0 +1,81 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--header-a) 0%, var(--header-b) 100%);
+    }
+    #s8-lockup {
+      position: absolute;
+      left: 0;
+      width: 1920px;
+      top: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    #s8-mark {
+      width: 200px;
+      height: 200px;
+      color: #7fe3da;
+    }
+    #s8-name {
+      color: var(--ink);
+      font-size: 124px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    /* Wind streaks, the same lines as the map's wind, carry the mark in from the left. */
+    #s8-streaks {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s8-url {
+      position: absolute;
+      left: 0;
+      width: 1920px;
+      top: 660px;
+      text-align: center;
+      color: #c7d6e4;
+      font-size: 52px;
+      font-weight: 600;
+    }
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+    <svg id="s8-streaks" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true" fill="none" stroke="#7fe3da" stroke-linecap="round">
+      <path pathLength="100" d="M40 420 C 160 405, 240 430, 330 418" stroke-width="5" opacity="0.55" />
+      <path pathLength="100" d="M0 470 C 140 455, 230 485, 320 468" stroke-width="6" opacity="0.8" />
+      <path pathLength="100" d="M90 520 C 190 508, 260 530, 335 520" stroke-width="5" opacity="0.6" />
+      <path pathLength="100" d="M20 565 C 130 552, 220 575, 310 562" stroke-width="4" opacity="0.4" />
+    </svg>
+    <div id="s8-lockup">
+      <!-- AirCast's own mark, the same SVG as the site's header. -->
+      <svg id="s8-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M14 30a8 8 0 0 1 1.2-15.9A11 11 0 0 1 36 17a7 7 0 0 1-1 13.9H14z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" />
+        <path d="M8 37h22M14 42h20" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+      </svg>
+      <div id="s8-name">AirCast Iceland</div>
+    </div>
+    <div id="s8-url" class="clip" data-start="1.6" data-duration="3.4">aircast-iceland.onrender.com</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // The streaks draw in from the left, and the mark rides in on them, sharpening as it lands.
+      const streaks = document.querySelectorAll('#s8-streaks path');
+      gsap.set(streaks, { attr: { 'stroke-dasharray': '100 120', 'stroke-dashoffset': 110 } });
+      tl.to(streaks, { attr: { 'stroke-dashoffset': 0 }, duration: 0.6, ease: 'power2.out', stagger: 0.05 }, 0);
+      tl.from('#s8-mark', { x: -280, opacity: 0, filter: 'blur(12px)', duration: 0.75, ease: 'expo.out' }, 0.12);
+      // The name wipes in beside it, left to right.
+      tl.from('#s8-name', { clipPath: 'inset(0 100% 0 0)', duration: 0.5, ease: 'power3.out' }, 0.6);
+      // The address sharpens in and holds to the end (2.5 s and more).
+      gsap.set('#s8-url', { opacity: 0, filter: 'blur(8px)' });
+      tl.to('#s8-url', { opacity: 1, filter: 'blur(0px)', duration: 0.18, ease: 'power2.out' }, 1.6);
+      tl.to({}, { duration: 5 }, 0);
+      window.__timelines['s8'] = tl;
+    })();
+  </script>
+</template>

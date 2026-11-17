@@ -1,0 +1,108 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--ground);
+    }
+    #root .title {
+      left: 96px;
+      top: 104px;
+      max-width: 620px;
+    }
+    .s4-shot {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    /* The details card (page x 1082 to 1560, from y 444) at 2x: frame x 860 to 1817, y 300 down. */
+    #s4-card {
+      position: absolute;
+      left: 860px;
+      top: 300px;
+      width: 957px;
+      height: 780px;
+      overflow: hidden;
+      border-radius: 28px 28px 0 0;
+    }
+    #s4-card .cam {
+      left: -860px;
+      top: -300px;
+    }
+    /* The badge (page 1104 to 1544, 527 to 610, measured on the plate) is lifted off the card so it can land:
+       the card's own colour covers the plate's badge, and a crop of it pops in on top. */
+    #s4-badge-gap {
+      position: absolute;
+      left: 41px;
+      top: 162px;
+      width: 888px;
+      height: 174px;
+      background: #152230;
+    }
+    #s4-badge-pop {
+      position: absolute;
+      left: 45px;
+      top: 166px;
+      width: 880px;
+      height: 166px;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    #s4-badge-pop .cam {
+      left: 0;
+      top: 0;
+    }
+    #s4-cursor {
+      position: absolute;
+      left: 1180px;
+      top: 640px;
+      width: 64px;
+      height: 64px;
+      transform-origin: 8px 6px;
+    }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <!-- A: the real site, pushed in on the map; the cursor clicks the Grensás dot. -->
+    <div id="s4-click" class="s4-shot clip" data-start="0" data-duration="2.75">
+      <div id="s4-cam-a" class="cam"><img id="s4-plate-a" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+      <svg id="s4-cursor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 2l15 11-6.5 1.2L15 21l-3 1.4-3.4-6.9L3 20z" fill="#ffffff" stroke="#0d1620" stroke-width="1.4" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <!-- B: the result, the real details panel's top: the station and its badge. Only the card
+         shows, so the title sits on plain ground and never over the site's own text. -->
+    <div id="s4-badge" class="s4-shot clip" data-start="2.75" data-duration="3.25">
+      <div id="s4-card">
+        <div id="s4-cam-b" class="cam"><img id="s4-plate-b" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+        <div id="s4-badge-gap"></div>
+        <div id="s4-badge-pop"><div id="s4-cam-badge" class="cam"><img id="s4-plate-badge" class="plate" src="assets/plates/site-2x.png" alt="" /></div></div>
+      </div>
+    </div>
+    <h1 id="s4-title" class="title clip" data-start="0.6" data-duration="5.2">Pick a station</h1>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // A: Grensás's dot (page 562, 943) held at frame (1180, 640) while the camera pushes in, 2x to 2.2x.
+      const camA = (s) => ({ scale: s, x: 1180 - 562 * s, y: 640 - 942.9 * s });
+      gsap.set('#s4-cam-a', camA(2));
+      tl.to('#s4-cam-a', { ...camA(2.2), duration: 1.2, ease: 'power2.inOut' }, 0);
+      Film.blurWords(tl, '#s4-title', 0.6);
+      // The cursor comes in from the lower right, finds the dot, and clicks at 2.5 s.
+      tl.from('#s4-cursor', { x: 420, y: 330, duration: 1.4, ease: 'power2.inOut' }, 0.7);
+      tl.to('#s4-cursor', { scale: 0.85, duration: 0.08, ease: 'power2.in' }, 2.42);
+      tl.to('#s4-cursor', { scale: 1, duration: 0.12, ease: 'power2.out' }, 2.5);
+
+      // B: cut on the click's rebound. The card comes in a little large and settles at 2x.
+      gsap.set('#s4-cam-b', { scale: 2, x: 860 - 1081.6 * 2, y: 300 - 443.9 * 2 });
+      tl.from('#s4-card', { scale: 1.06, duration: 0.5, ease: 'expo.out', transformOrigin: '50% 0%' }, 2.75);
+      // The badge lands on "Right now: moderate" (its pop sound lands with it).
+      gsap.set('#s4-cam-badge', { scale: 2, x: -1104 * 2, y: -527 * 2 });
+      gsap.set('#s4-badge-pop', { scale: 0.85, opacity: 0 });
+      tl.to('#s4-badge-pop', { scale: 1, opacity: 1, duration: 0.45, ease: 'expo.out' }, 2.9);
+      tl.to({}, { duration: 6 }, 0);
+      window.__timelines['s4'] = tl;
+    })();
+  </script>
+</template>

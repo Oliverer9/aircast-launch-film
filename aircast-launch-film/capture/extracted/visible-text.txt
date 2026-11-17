@@ -1,0 +1,230 @@
+[a] Skip to content
+[h1] AirCast Iceland
+[p] Air quality and weather in Iceland, live.
+[button] English
+[button] Íslenska
+[button] Dark mode
+[p] Right now at 30 air quality stations
+[p] updated just now (21:04 UTC)
+[li] Good
+[li] Fair
+[li] Moderate
+[li] No index
+[h2] Forecast
+[p] For Reykjavík, 1.6 km away. From Veðurstofa Íslands, issued 18:00 UTC.
+[span] 00:00
+[span] m/s
+[span] SSE
+[span] Rain
+[span] 03:00
+[span] m/s
+[span] SSW
+[span] Rain showers
+[span] 06:00
+[span] m/s
+[span] SSW
+[span] Cloudy
+[span] 09:00
+[span] m/s
+[span] SSW
+[span] Overcast
+[span] 12:00
+[span] m/s
+[span] Rain
+[span] 15:00
+[span] m/s
+[span] Rain showers
+[span] 18:00
+[span] m/s
+[span] SSW
+[span] Light rain
+[span] 21:00
+[span] m/s
+[span] SSW
+[span] Rain showers
+[h2] Map of stations
+[button] Wind animation
+[p] Pick a station dot, or click anywhere for the nearest weather. Scroll to zoom. The streaks follow the wind measured right now at 269 weather stations.
+[a] Leaflet
+[a] OpenStreetMap
+[div] contributors
+[h3] Levels (European Air Quality Index)
+[span] Good
+[span] Fair
+[span] Moderate
+[span] Poor
+[span] Very poor
+[span] Extremely poor
+[p] No index: the station only measures gases the index doesn’t cover, like H₂S.
+[label] Station
+[option] Akureyri Strandgata (við Hof)
+[option] Good
+[option] Ásbrú
+[option] Good
+[option] Garðabær Garðaholt
+[option] Good
+[option] Garður
+[option] Good
+[option] Grindavík Nesvegur
+[option] Good
+[option] Grundartangi Gröf
+[option] Good
+[option] Grundartangi Kríuvarða
+[option] Good
+[option] Grundartangi Melahverfi
+[option] Fair
+[option] Hafnarfjörður Hvaleyrarholt
+[option] Good
+[option] Hafnarfjörður Lónakot Rio Tinto
+[option] Good
+[option] Hafnir
+[option] Good
+[option] Hveragerði Leikskólinn Óskaland
+[option] No index
+[option] Keflavík Vatnaveröld
+[option] Good
+[option] Kelduhverfi Eyvindarstadir
+[option] No index
+[option] Kópavogur Dalsmári
+[option] Good
+[option] Kópavogur Hörðuvallaskóli
+[option] Good
+[option] Kópavogur Lækjarbotnar Waldorfskóli
+[option] No index
+[option] Mývatn Reykjahlíð Grunnskóli
+[option] No index
+[option] Mývatn Vogar
+[option] No index
+[option] Nesjavellir
+[option] No index
+[option] Njarðvík Stapaskóli
+[option] Good
+[option] Portable Farstöð 1
+[option] Good
+[option] Reykjavik Grensas
+[option] Moderate
+[option] Reykjavik Husdyragardurinn
+[option] Good
+[option] Reykjavík Laugarnes
+[option] Good
+[option] Reykjavík Norðlingaholt
+[option] No index
+[option] Sandgerði
+[option] Good
+[option] Selfoss
+[option] Good
+[option] Úlfarsárdalur Lambhaga OR
+[option] No index
+[option] Vogar
+[option] Good
+[button] Near me
+[h2] Reykjavik Grensas
+[p] Reykjavík ·
+[p] hour ending 20:00 UTC
+[span] Air quality
+[span] Moderate
+[h3] What it means
+[dt] Everyone
+[dd] Enjoy your usual outdoor activities
+[dt] Sensitive groups
+[span] children, older people, and people with asthma or heart or lung conditions
+[dd] Consider reducing intense outdoor activities, if you experience symptoms.
+[p] Advice from the European Environment Agency.
+[h3] Pollution levels
+[span] Dust (PM10)
+[span] 12.1
+[span] µg/m3
+[strong] Good
+[span] Fine dust (PM2.5)
+[span] 4.2
+[span] µg/m3
+[strong] Good
+[span] Nitrogen dioxide (NO₂)
+[span] 25.1
+[span] µg/m3
+[strong] Moderate
+[span] Sulphur dioxide (SO₂)
+[span] 4.6
+[span] µg/m3
+[strong] Good
+[span] Hydrogen sulphide (H₂S)
+[span] 1.3
+[span] µg/m3
+[strong] No index
+[p] The European index has no levels for this one.
+[span] Carbon monoxide (CO)
+[span] 0.1
+[span] mg/m3
+[strong] No index
+[p] The European index has no levels for this one.
+[h3] Last 24 hours
+[button] PM10
+[button] PM2.5
+[button] NO2
+[button] SO2
+[button] H2S
+[p] Dust (PM10)
+[span] µg/m3
+[text] 22:00
+[text] 09:00
+[text] 20:00
+[summary] Show as a table
+[th] Time (UTC)
+[th] Value
+[th] µg/m3
+[td] 22:00
+[td] 19.7
+[td] 23:00
+[td] 19.8
+[td] 00:00
+[td] 11.1
+[td] 01:00
+[td] 7.7
+[td] 02:00
+[td] 03:00
+[td] 11.4
+[td] 04:00
+[td] 7.4
+[td] 05:00
+[td] 10.9
+[td] 06:00
+[td] 14.2
+[td] 07:00
+[td] 15.7
+[td] 08:00
+[td] 23.4
+[td] 09:00
+[td] 29.2
+[td] 10:00
+[td] 46.1
+[td] 11:00
+[td] 43.8
+[td] 12:00
+[td] 34.7
+[td] 13:00
+[td] 15.1
+[td] 14:00
+[td] 14.7
+[td] 15:00
+[td] 17.7
+[td] 16:00
+[td] 14.2
+[td] 17:00
+[td] 12.5
+[td] 18:00
+[td] 6.7
+[td] 19:00
+[td] 10.2
+[td] 20:00
+[td] 12.1
+[h3] Weather nearby
+[p] Reykjavík - Bústaðavegur, 1.4 km away, at 21:00 UTC
+[dt] Temperature
+[dd] 5.8 °C
+[dt] Wind
+[dd] m/s
+[dd] from SSE
+[dd] , gusts 6.1 m/s
+[p] Sources: Loftgæði (Umhverfis- og orkustofnun) & Veðurstofa Íslands. Levels: European Air Quality Index (EEA).
+[a] Read the report
+[p] on how AirCast Iceland was made.

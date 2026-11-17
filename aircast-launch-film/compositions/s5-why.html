@@ -1,0 +1,162 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--ground);
+    }
+    #root .title {
+      left: 96px;
+      top: 104px;
+    }
+    .s5-shot {
+      position: absolute;
+      inset: 0;
+    }
+    /* The real "Pollution levels" list (page x 1099 to 1559, y 850 to 1238) at 2.3x: all six
+       rows, so the viewer sees that one gas is the reason, not everything. */
+    #s5-list {
+      position: absolute;
+      left: 760px;
+      top: 120px;
+      width: 1058px;
+      height: 892px;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+    /* The other five rows are dimmed; NO2 gets its own level colour as an outline. */
+    .s5-dim {
+      position: absolute;
+      left: 7px;
+      width: 1044px;
+      background: rgba(13, 22, 32, 0.72);
+    }
+    #s5-focus {
+      position: absolute;
+      left: 7px;
+      top: 345px;
+      width: 1044px;
+      height: 113px;
+      border: 4px solid var(--moderate);
+      border-radius: 14px;
+    }
+    #s5-chart-card {
+      position: absolute;
+      left: 96px;
+      top: 300px;
+      width: 1728px;
+      height: 680px;
+      background: #152230;
+      border: 1px solid #2b3b4c;
+      border-radius: 24px;
+    }
+    #s5-chart {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s5-axis {
+      fill: #a8b7c6;
+      font-size: 28px;
+      font-family: var(--font);
+    }
+    .s5-band-label {
+      fill: #a8b7c6;
+      font-size: 28px;
+      font-weight: 600;
+      font-family: var(--font);
+    }
+    #s5-peak {
+      fill: #e8eef4;
+      font-size: 34px;
+      font-weight: 700;
+      font-family: var(--font);
+    }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+    <!-- A: the real pollution list from the site, NO2 picked out. -->
+    <div id="s5-a" class="s5-shot clip" data-start="0" data-duration="2.5">
+      <div id="s5-list">
+        <div id="s5-cam" class="cam"><img id="s5-plate" class="plate" src="assets/plates/site-2x.png" alt="" /></div>
+        <div class="s5-dim" style="top: 78px; height: 113px"></div>
+        <div class="s5-dim" style="top: 212px; height: 113px"></div>
+        <div class="s5-dim" style="top: 479px; height: 113px"></div>
+        <div class="s5-dim" style="top: 612px; height: 125px"></div>
+        <div class="s5-dim" style="top: 757px; height: 125px"></div>
+        <div id="s5-focus"></div>
+      </div>
+    </div>
+    <h1 id="s5-title-a" class="title clip" data-start="0.4" data-duration="2">See why</h1>
+    <!-- B: NO2 at Grensás over the last 24 hours (real hourly values), in the site's chart style,
+         over the European index's NO2 bands. -->
+    <div id="s5-b" class="s5-shot clip" data-start="2.5" data-duration="4.5">
+      <div id="s5-chart-card"><svg id="s5-chart" width="1728" height="680" viewBox="0 0 1728 680"></svg></div>
+    </div>
+    <h1 id="s5-title-b" class="title clip" data-start="3" data-duration="3.9">At 10:00 it reached Poor</h1>
+  </div>
+  <script>
+    (function () {
+      // A: the list's top-left (page 1098.6, 850) at the box's top-left, at 2.3x.
+      gsap.set('#s5-cam', { scale: 2.3, x: -1098.6 * 2.3, y: -850 * 2.3 });
+
+      // B: build the chart from the snapshot's real values.
+      const svg = document.getElementById('s5-chart');
+      const NS = 'http://www.w3.org/2000/svg';
+      const el = (name, attrs, text) => {
+        const e = document.createElementNS(NS, name);
+        for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+        if (text !== undefined) e.textContent = text;
+        svg.appendChild(e);
+        return e;
+      };
+      const pts = AIRCAST.no2Day.points;
+      const L = 150, R = 1660, T = 60, B = 590, MAX = 100;
+      const x = (i) => L + (i / (pts.length - 1)) * (R - L);
+      const y = (v) => B - (v / MAX) * (B - T);
+      // EEA NO2 bands (hourly, µg/m³): Good to 10, Fair to 25, Moderate to 60, Poor to 100.
+      const bands = [[0, 10, '#50f0e6', 'Good'], [10, 25, '#50ccaa', 'Fair'], [25, 60, '#f0e641', 'Moderate'], [60, 100, '#ff5050', 'Poor']];
+      for (const [lo, hi, colour, name] of bands) {
+        el('rect', { x: L, y: y(hi), width: R - L, height: y(lo) - y(hi), fill: colour, opacity: 0.14 });
+        el('text', { x: R - 14, y: y(hi) + 34, 'text-anchor': 'end', class: 's5-band-label' }, name);
+      }
+      for (const v of [0, 25, 60, 100]) el('text', { x: L - 18, y: y(v) + 9, 'text-anchor': 'end', class: 's5-axis' }, v);
+      for (const i of [0, 12, pts.length - 1]) el('text', { x: x(i), y: B + 48, 'text-anchor': 'middle', class: 's5-axis' }, pts[i].time.slice(11, 16));
+      // pathLength 100 with a dash longer than the path hides it cleanly until it draws.
+      const line = el('path', { d: pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join(''), fill: 'none', stroke: '#4f94dc', 'stroke-width': 5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', pathLength: 100, 'stroke-dasharray': '100 120', 'stroke-dashoffset': 110 });
+      const peak = pts.reduce((a, p, i) => (p.value > pts[a].value ? i : a), 0);
+      const dot = el('circle', { cx: x(peak), cy: y(pts[peak].value), r: 10, fill: '#4f94dc', stroke: '#152230', 'stroke-width': 4 });
+      const label = el('text', { id: 's5-peak', x: x(peak) + 22, y: y(pts[peak].value) - 14 }, `${pts[peak].value.toFixed(1)} µg/m³`);
+      // How far along the line the peak is, by length, so the dot lands as the line reaches it.
+      let total = 0, toPeak = 0;
+      for (let i = 1; i < pts.length; i++) {
+        total += Math.hypot(x(i) - x(i - 1), y(pts[i].value) - y(pts[i - 1].value));
+        if (i === peak) toPeak = total;
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      // A: the list arrives with a blur swap; then the five other rows dim and NO2 is picked out,
+      // as the voice says "Nitrogen dioxide is the reason".
+      tl.from('#s5-list', { opacity: 0, filter: 'blur(8px)', duration: 0.2, ease: 'power2.out' }, 0);
+      Film.blurLine(tl, '#s5-title-a', 0.4);
+      gsap.set('.s5-dim', { opacity: 0 });
+      tl.to('.s5-dim', { opacity: 1, duration: 0.4, ease: 'power2.inOut', stagger: 0.04 }, 0.9);
+      tl.from('#s5-focus', { opacity: 0, scale: 1.03, duration: 0.35, ease: 'expo.out' }, 1.0);
+      Film.blurOut(tl, '#s5-title-a', 2.22);
+      tl.to('#s5-list', { opacity: 0, filter: 'blur(8px)', duration: 0.18, ease: 'power2.in' }, 2.32);
+
+      // B: the chart card sharpens in, the last 24 hours draw at a constant speed, and the
+      // peak dot and its value land as the line reaches them.
+      tl.from('#s5-chart-card', { opacity: 0, filter: 'blur(8px)', duration: 0.18, ease: 'power2.out' }, 2.5);
+      const DRAW = 2.2, from = 2.6;
+      tl.to(line, { attr: { 'stroke-dashoffset': 0 }, duration: DRAW, ease: 'none' }, from);
+      const hit = from + (toPeak / total) * DRAW;
+      gsap.set([dot, label], { opacity: 0 });
+      tl.to(dot, { opacity: 1, duration: 0.15, ease: 'power2.out' }, hit);
+      tl.to(label, { opacity: 1, duration: 0.25, ease: 'power2.out' }, hit + 0.05);
+      Film.inkWords(tl, '#s5-title-b', 3, '#3d4c5c');
+      tl.to({}, { duration: 7 }, 0);
+      window.__timelines['s5'] = tl;
+    })();
+  </script>
+</template>
