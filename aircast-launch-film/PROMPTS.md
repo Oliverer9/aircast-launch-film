@@ -71,4 +71,4 @@ unless I ask. Everything above is what I typed myself.
 
 ## Would I prompt it the same way next time?
 
-*(Write this part yourself.)*
+I would have claude generate a base prompt for me that i can tweak to make small tweaks unnecessary. I would have the icelandic scentences that the ai reads typed like its pronounced. Other than that it came out great first try and i was kinda testing the water since film making with ai is uncharted teratory, but i have a clear vision on how to go about it efficiently nect time!
