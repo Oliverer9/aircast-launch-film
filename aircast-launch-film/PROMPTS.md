@@ -43,13 +43,25 @@ These are my real messages, typos and all. My notes in *italics* say what each o
 - `maake a test clip`
 - `the last one sounds the best` *(take 3: "Grenn-souse", "Rake-ya-veek")*
 - `Yes, re-download it` *(HyperFrames' Chrome had broken, so renders failed)*
+- `is it finnished?` *(asking about the new render)*
 
 ## 7. Checking the hand-in
 - `is this according to the project descriptions`
 - `what will you write for the prompt section?`
 - `can you create a custom prompt for you that makes it so it would turn out the way it did`
   *(the agent wrote one long prompt describing the finished film; it is not one I used, so it's not here)*
+- `whats next`
 - `yes write it now` *(STYLE-LIBRARY.md, this file and the storyboard page's change list)*
+- `where is the prompts.md? and why the 720 and not 1080?` *(the guide asks for a 720p copy)*
+- `finnish the capturing page` *(the agent took a picture of the storyboard page to check it)*
+- `arent the original prompts missing in prompt.md?` *(they were; added to section 1)*
+- `alright is everything ready for turnin?`
+
+## 8. Putting it on GitHub
+- `i need the github link` *(there was no repo yet; I chose: the whole films folder, public, and I create the repo myself)*
+- `give me a short description of the project and the steps that i have to make to the new repo`
+- `done` *(the agent pushed to https://github.com/Oliverer9/aircast-launch-film)*
+- `i cant save my change in prompt md, can you help. make it up 2 date and also github`
 
 ## A note on how the chat started
 This chat was opened by another Claude session that I had asked to help me with my Vefskólinn
